@@ -1,0 +1,95 @@
+<?php 
+    $name = "Rodrigo";
+    const NOMBRE = 'Villegas';
+    $isDev = true;
+    $age = 88;
+
+    $isOld = $age > 50;
+/*
+    if($isOld){
+        echo "<h2>Sos viejo, lo siento.</h2>";
+    }
+    else{
+        echo "<h2>Sos jóven, felicidades.</h2>";
+    }
+*/
+    is_string($name);
+    define('LOGO_URL', 'https://cdn.freebiesupply.com/logos/large/2x/dragon-ball-z-logo-png-transparent.png');
+    $output = "Hola $name, de $age años, con un patrimonio de \$ 100 pesos.";
+    
+?>
+
+<?php /* mejora 1*/?>
+
+<?php /* if ($isOld): ?>
+    <h2>Sos viejo, sorry.</h2>
+<?php elseif ($isDev) : ?>
+    <h2>No sos viejo, pero sos dev. Estás acabado.</h2>
+<?php else: ?>
+    <h2>Sos jóven, felicidades.</h2>
+<?php endif; */ 
+?> 
+
+<?php /*mejora 2*/?>
+
+<?php /* $outputAge = $isOld
+    ? 'Sos mayor de 50 años'
+    : 'Sos menor de 50 años'; */
+?>
+
+<?php /*uso del match*/ ?>
+
+<?php
+    $outputAge = match (true){
+        $age < 3    => "Sos un bebé, $name",
+        $age <10    => "Sos un niño, $name",
+        $age <18    => "Sos un adolescente, $name",
+        $age === 18 => "Mayor de edad",
+        $age <35    => "Sos un adulto jóven, $name",
+        $age <55    => "Sos un adulto mayor, $name",
+        default     => "Vas a morir pronto, $name",
+    };
+
+$bestSnacks = ["caramelos", "chocolates", "galletitas", 1, 2];
+$bestSnacks[3] = "alfajores";
+$bestSnacks[] = "bizcochos";
+/* Con solo poner [] y asignar algo, lo coloca al final del array */
+
+$person = [
+    "name" => "Goku",
+    "age" => "60",
+    "isDev" => false,
+];
+
+$person["name"] = "Son Goku";
+
+/*
+<h3>
+    El mejor snack es <?= $bestSnacks[5] ?>
+</h3>
+*/
+
+?>
+
+<h2><?= $output = "Arreglo sin mostrar los índices" ?> </h2>
+
+<ul>
+    <?php foreach ($bestSnacks as $snackList) : ?>
+    <li> <?= $snackList ?> </li>
+    <?php endforeach; ?>
+</ul> 
+
+<h2><?= $output = "Arreglo mostrando los índices con variable key" ?> </h2>
+
+<ul>
+    <?php foreach ($bestSnacks as $key => $snackList) : ?>
+    <li> <?= $key . " " . $snackList ?> </li>
+    <?php endforeach; ?>
+</ul> 
+
+<h2><?= $outputAge ?> </h2>
+
+<img src="<?= LOGO_URL ?>" alt="DBZ Logo" width = "50" >
+<h1>
+    <?= $output ?>
+</h1>
